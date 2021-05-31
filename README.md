@@ -2,3 +2,4 @@
 -Discord.js
 -node-fetch
 -fs
+-ytdl
