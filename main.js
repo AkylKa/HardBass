@@ -1,36 +1,30 @@
-const Discord = require('discord.js')
-const fs = require('fs') 
-const client = new Discord.Client()
-const config = require('./config.json')
-const fetch = require('node-fetch')
-client.commands = new Discord.Collection() 
+const Discord = require("discord.js");
+const fs = require("fs");
 
-fs.readdir('./commands', (err, files) => { 
-    if (err) console.log(err)
+const client = new Discord.Client();
+const config = require("./config.json");
+client.config = config;
 
-    let jsfile = files.filter(f => f.split('.').pop() === 'js') 
-    if (jsfile.length <= 0) return console.log('Команды не найдены!') 
+fs.readdir("./events/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    const event = require(`./events/${file}`);
+    let eventName = file.split(".")[0];
+    client.on(eventName, event.bind(null, client));
+  });
+});
 
-    console.log(`Загружено ${jsfile.length} команд`)
-    jsfile.forEach((f, i) => { 
-        let props = require(`./commands/${f}`)
-        client.commands.set(props.help.name, props)
-    })
-})
+client.commands = new Discord.Collection();
 
-client.on('ready', () => {
-    console.log(`Бот ${client.user.username} запустился`);
-})
+fs.readdir("./commands/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (!file.endsWith(".js")) return;
+    let props = require(`./commands/${file}`);
+    let commandName = file.split(".")[0];
+    console.log(`Попытка загрузить команду ${commandName}`);
+    client.commands.set(commandName, props);
+  });
+});
 
-client.on('message', message => {
-    let prefix = config.prefix
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-    let messageArray = message.content.split(' ') 
-    let command = messageArray[0] 
-    let args = messageArray.slice(1) 
-
-    let command_file = client.commands.get(command.slice(prefix.length)) 
-    if (command_file) command_file.run(client, message, args, prefix)
-})
-
-client.login(config.token)
+client.login(config.token);
