@@ -1,5 +1,5 @@
 # What is the bot written on?
--Discord.js
--node-fetch
--fs
--ytdl
+- Discord.js
+- node-fetch
+- fs
+- ytdl
