@@ -8,6 +8,17 @@ module.exports.run = async (client,message,args,prefix) => {
 	message.channel.send(`Пинг: ${timeTaken}ms`);
 
 };
-module.exports.help = {
-    name: "ping"
+
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User"
+};
+
+exports.help = {
+  name: "ping",
+  category: "User",
+  description: "Показ задержки",
+  usage: "!ping"
 };

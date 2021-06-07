@@ -13,3 +13,18 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
 • Discord.js :: v${version}
 • Node       :: ${process.version}`, {code: "asciidoc"});
 };
+
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User"
+};
+
+
+exports.help = {
+  name: "stats",
+  category: "System",
+  description: "Дает полезную статистику бота",
+  usage: "!stats"
+};
