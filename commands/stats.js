@@ -21,10 +21,9 @@ exports.conf = {
   permLevel: "User"
 };
 
-
 exports.help = {
   name: "stats",
-  category: "System",
-  description: "Дает полезную статистику бота",
-  usage: "!stats"
+  category: "Miscelaneous",
+  description: "Gives some useful bot statistics",
+  usage: "stats"
 };

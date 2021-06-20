@@ -1,4 +1,4 @@
-/*exports.run = async (client, message, args, level) => {
+exports.run = async (client, message, args, level) => {
     const code = args.join(" ");
     try {
       const evaled = eval(code);
@@ -21,4 +21,4 @@
     category: "System",
     description: "Evaluates arbitrary javascript.",
     usage: "eval [...code]"
-  };*/
+  };

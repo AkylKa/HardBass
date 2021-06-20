@@ -1,4 +1,4 @@
-/*exports.run = async (client, message, args, level) => {
+exports.run = async (client, message, args, level) => {
     const friendly = client.config.permLevels.find(l => l.level === level).name;
     message.reply(`Your permission level is: ${level} - ${friendly}`);
   };
@@ -15,4 +15,4 @@
       category: "Miscelaneous",
       description: "Tells you your permession level for the current message location.",
       usage: "mylevel"
-  };*/
+  };
